@@ -1,11 +1,11 @@
-module Polynomial (multiply, multiplyWithIntCoeffs, Poly(Poly)) where
+module Polynomial (multiply, multiplyWithIntCoeffs, Poly(Poly), Coefficients) where
 
 import Data.Complex
 import DFT (dft, idft)
 import Data.List (take, zip, repeat)
 
 type Coefficients = [Complex Float]
-data Poly = Poly Coefficients
+data Poly = Poly Coefficients deriving (Eq)
 
 instance Show Poly where
   show (Poly p) = show' p 0

@@ -1,3 +1,7 @@
+module DFTSpec (
+  dftSpec
+) 
+where
 import Test.Hspec
 import Test.QuickCheck
 import Control.Exception (evaluate)
@@ -5,9 +9,9 @@ import DFT (dft, idft)
 import Data.Complex
 import Data.List (zip, repeat)
 
-main :: IO ()
-main = hspec $ do
-  describe "Are DFT and IDFT correct ?" $ do
+dftSpec :: Spec
+dftSpec = do
+  describe "dft and inverse dft tests..." $ do
     it "checks whether composition of inverse dft and dft returns the original sequence" $
       property $ prop_dft_correct
 
