@@ -9,12 +9,12 @@ fft' :: Int -> [Complex Float] -> [Complex Float]
 fft' 1 [x] = [x]
 fft' n coeffs = eval [0..n-1] halfN nThPrimitiveRoots halfFFT
   where 
-        halfN = n `div` 2
+        halfN                   = n `div` 2
         (evenCoeffs, oddCoeffs) = split coeffs
-        evenFFT = fft' halfN evenCoeffs
-        oddFFT = fft' halfN oddCoeffs
-        nThPrimitiveRoots = duplicate $ take halfN (rootsOfUnity n)
-        halfFFT = duplicate $ zip evenFFT oddFFT
+        evenFFT                 = fft' halfN evenCoeffs
+        oddFFT                  = fft' halfN oddCoeffs
+        nThPrimitiveRoots       = duplicate $ take halfN (rootsOfUnity n)
+        halfFFT                 = duplicate $ zip evenFFT oddFFT
 
 rootsOfUnity :: Int -> [Complex Float]
 rootsOfUnity = rootsOfUnity' . fromIntegral
@@ -25,8 +25,8 @@ rootsOfUnity' n = map conjugate $ [ cis (2 * pi * k / n) | k <- [0 .. n - 1] ]
 split :: [Complex Float] -> ([Complex Float], [Complex Float])
 split coeffs = (evenCoeffs, oddCoeffs)
   where indexedCoeffs = zip coeffs [0..]
-        evenCoeffs = [ coeff | (coeff, index) <- indexedCoeffs, even index ]
-        oddCoeffs  = [ coeff | (coeff, index) <- indexedCoeffs, odd index ]
+        evenCoeffs    = [ coeff | (coeff, index) <- indexedCoeffs, even index ]
+        oddCoeffs     = [ coeff | (coeff, index) <- indexedCoeffs, odd index ]
         
 eval :: [Int] -> Int -> [Complex Float] -> [(Complex Float, Complex Float)] -> [Complex Float]
 eval [] _ _ _ = []

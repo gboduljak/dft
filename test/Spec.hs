@@ -24,7 +24,7 @@ are_numbers_nearly_equal :: [Complex Float] -> [Float] -> Bool
 are_numbers_nearly_equal [] [] = True
 are_numbers_nearly_equal (x:xs) (y:ys) 
   | realPartsEq = are_numbers_nearly_equal xs ys
-  | otherwise = False
+  | otherwise   = False
   where realPartsEq = nearly_equal (realPart x) y
 
 nearly_equal :: Float -> Float -> Bool
